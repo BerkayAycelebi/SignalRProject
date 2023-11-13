@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SignalR.BusinessLayer.Abstract;
+using SignalR.DtoLayer.CategoryDto;
 using SignalR.DtoLayer.ContactDto;
 using SignalR.EntityLayer.Entities;
 
@@ -10,67 +12,72 @@ namespace SignalRApi.Controllers
     [ApiController]
     public class ContactController : ControllerBase
     {
-        private readonly IContactService _contactService;
+        private IContactService _contactService;
+        private readonly IMapper _mapper;
 
-        public ContactController(IContactService contactService)
+        public ContactController(IContactService contactService, IMapper mapper)
         {
             _contactService = contactService;
+            _mapper = mapper;
         }
 
         [HttpGet]
-
-        public IActionResult ContactList() 
+        public IActionResult ContactList()
         {
-            var values = _contactService.TGetListAll();
-            return Ok(values);
-        
-        
+
+            var value = _mapper.Map<List<ResultContactDto>>(_contactService.TGetListAll());
+            return Ok(value);
         }
         [HttpPost]
         public IActionResult CreateContact(CreateContactDto createContactDto)
         {
-            Contact contact = new Contact()
+
+            _contactService.TAdd(new Contact()
             {
                 Location = createContactDto.Location,
                 Phone = createContactDto.Phone,
-                Mail = createContactDto.Mail,
-                FooterDescription = createContactDto.FooterDescription,
+                Mail   = createContactDto.Mail,
                 FooterTitle = createContactDto.FooterTitle,
+                FooterDescription = createContactDto.FooterDescription,
                 OpenDays = createContactDto.OpenDays,
                 OpenDaysDescription = createContactDto.OpenDaysDescription,
                 OpenHours = createContactDto.OpenHours,
-            };
-            _contactService.TAdd(contact);
-            return Ok("İletişim bilgisi eklendi");
+            });
+            return Ok("İletişim eklendi.");
+
+
+
         }
-
-        [HttpDelete]
-
-        public IActionResult DeleteContact(int id) 
-        {
-            var value=_contactService.TGetById(id);
-            _contactService.TDelete(value);
-            return Ok("İletişim silindi");
-        }
-
         [HttpPut]
+
         public IActionResult UpdateContact(UpdateContactDto updateContactDto)
         {
-            Contact contact = new Contact()
+            _contactService.TUpdate(new Contact()
             {
                 ContactID = updateContactDto.ContactID,
                 Location = updateContactDto.Location,
                 Phone = updateContactDto.Phone,
                 Mail = updateContactDto.Mail,
-                FooterDescription = updateContactDto.FooterDescription,
                 FooterTitle = updateContactDto.FooterTitle,
+                FooterDescription = updateContactDto.FooterDescription,
                 OpenDays = updateContactDto.OpenDays,
                 OpenDaysDescription = updateContactDto.OpenDaysDescription,
                 OpenHours = updateContactDto.OpenHours,
-            };
-            _contactService.TUpdate(contact);
-            return Ok("İletişim güncellendi");
+            });
+
+            return Ok("İletişim  Güncellendi");
+
+
         }
+        [HttpDelete]
+
+        public IActionResult DeleteContact(int id)
+        {
+            var value = _contactService.TGetById(id);
+            _contactService.TDelete(value);
+            return Ok("İletişim Silindi");
+        }
+
         [HttpGet("GetContact")]
         public IActionResult GetContact(int id)
         {

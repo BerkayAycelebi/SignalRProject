@@ -8,11 +8,12 @@ namespace SignalR.DtoLayer.FeatureDto
 {
     public class GetFeatureDto
     {
-        public int DiscountID { get; set; }
-        public string Title { get; set; }
-        public string Amount { get; set; }
-        public string Description { get; set; }
-        public string ImageUrl { get; set; }
-        public bool Status { get; set; }
+        public int FeatureID { get; set; }
+        public string Title1 { get; set; }
+        public string Description1 { get; set; }
+        public string Title2 { get; set; }
+        public string Description2 { get; set; }
+        public string Title3 { get; set; }
+        public string Description3 { get; set; }
     }
 }

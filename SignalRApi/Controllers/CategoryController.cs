@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SignalR.BusinessLayer.Abstract;
 using SignalR.DtoLayer.CategoryDto;
@@ -11,48 +12,48 @@ namespace SignalRApi.Controllers
     public class CategoryController : ControllerBase
     {
         private ICategoryService _categoryService;
+        private readonly IMapper _mapper;
 
-        public CategoryController(ICategoryService categoryService)
+        public CategoryController(ICategoryService categoryService, IMapper mapper)
         {
             _categoryService = categoryService;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public IActionResult CategoryList() 
+        public IActionResult CategoryList()
         {
-        
-            var values =_categoryService.TGetListAll();
-            return Ok(values);
+
+            var value = _mapper.Map<List<ResultCategoryDto>>(_categoryService.TGetListAll());
+            return Ok(value);
         }
         [HttpPost]
         public IActionResult CreateCategory(CreateCategoryDto createCategoryDto)
         {
-            Category category = new Category()
-            {
-            CategoryName = createCategoryDto.CategoryName,
-            CategoryStatus = createCategoryDto.CategoryStatus,
-            
-            
-            };
 
-            _categoryService.TUpdate(category); 
-            return Ok("Kategori Eklendi");
+            _categoryService.TAdd(new Category()
+            {
+
+                CategoryName = createCategoryDto.CategoryName,
+                CategoryStatus = true
+            });
+            return Ok("Kategori eklendi.");
+
+
 
         }
         [HttpPut]
 
         public IActionResult UpdateCategory(UpdateCategoryDto updateCategoryDto)
         {
-            Category category = new Category()
+            _categoryService.TUpdate(new Category()
             {
-                CategoryID = updateCategoryDto.CategoryID,
+
                 CategoryName = updateCategoryDto.CategoryName,
-                CategoryStatus = updateCategoryDto.CategoryStatus,
-
-
-            };
-
-            _categoryService.TUpdate(category);
+                CategoryID=updateCategoryDto.CategoryID,
+                CategoryStatus = updateCategoryDto.CategoryStatus
+            });
+           
             return Ok("Kategori Güncellendi");
 
 
@@ -70,7 +71,7 @@ namespace SignalRApi.Controllers
         public IActionResult GetCategory(int id)
         {
             var value = _categoryService.TGetById(id);
-            return Ok(value);   
+            return Ok(value);
         }
     }
 }

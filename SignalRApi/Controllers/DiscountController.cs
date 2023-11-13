@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SignalR.BusinessLayer.Abstract;
+using SignalR.DtoLayer.ContactDto;
 using SignalR.DtoLayer.DiscountDto;
 using SignalR.EntityLayer.Entities;
 
@@ -10,68 +12,72 @@ namespace SignalRApi.Controllers
     [ApiController]
     public class DiscountController : ControllerBase
     {
-        private readonly IDiscountService _discountService;
 
-        public DiscountController(IDiscountService discountService)
+        private IDiscountService _discountService;
+        private readonly IMapper _mapper;
+
+        public DiscountController(IDiscountService discountService, IMapper mapper)
         {
             _discountService = discountService;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult DiscountList()
         {
-            var values =_discountService.TGetListAll();
-            return Ok(values);
-        }
 
+            var value = _mapper.Map<List<ResultDiscountDto>>(_discountService.TGetListAll());
+            return Ok(value);
+        }
         [HttpPost]
-        public IActionResult CreateDiscount(CreateDiscountDto createDiscountDto)
+        public IActionResult CreateContact(CreateDiscountDto createDiscountDto)
         {
-            Discount discount = new Discount()
+
+            _discountService.TAdd(new Discount()
             {
                 Title = createDiscountDto.Title,
-                Amount = createDiscountDto.Amount,
                 Description = createDiscountDto.Description,
+                Amount = createDiscountDto.Amount,
                 ImageUrl = createDiscountDto.ImageUrl,
-                Status = createDiscountDto.Status,
-            };
-
-            _discountService.TAdd(discount);
+                Status = createDiscountDto.Status
+                
+            });
             return Ok("İndirim eklendi.");
 
-        }
 
+
+        }
         [HttpPut]
-        public IActionResult UpdateDiscount(UpdateDiscountDto updateDiscountDto)
+
+        public IActionResult UpdateContact(UpdateDiscountDto updateDiscountDto)
         {
-            Discount discount = new Discount()
+            _discountService.TUpdate(new Discount()
             {
                 DiscountID = updateDiscountDto.DiscountID,
                 Title = updateDiscountDto.Title,
-                Amount = updateDiscountDto.Amount,
                 Description = updateDiscountDto.Description,
+                Amount = updateDiscountDto.Amount,
                 ImageUrl = updateDiscountDto.ImageUrl,
-                Status = updateDiscountDto.Status,
-            };
-            _discountService.TUpdate(discount);
-            return Ok("İndirim güncelle");
+                Status = updateDiscountDto.Status
+            });
+
+            return Ok("İndirim  Güncellendi");
 
 
         }
         [HttpDelete]
-        public IActionResult DeleteDiscount(int id) 
-        { 
-            var value=_discountService.TGetById(id);
+
+        public IActionResult DeleteContact(int id)
+        {
+            var value = _discountService.TGetById(id);
             _discountService.TDelete(value);
-            return Ok("İndirim silindi");
-
-
+            return Ok("indirim Silindi");
         }
 
         [HttpGet("GetDiscount")]
-        public IActionResult GetDiscount(int id)
+        public IActionResult GetContact(int id)
         {
-            var value =_discountService.TGetById(id);
+            var value = _discountService.TGetById(id);
             return Ok(value);
         }
     }
