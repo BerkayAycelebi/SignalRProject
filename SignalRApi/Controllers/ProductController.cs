@@ -60,6 +60,7 @@ namespace SignalRApi.Controllers
                 Price = createProductDto.Price,
                 ImageUrl = createProductDto.ImageUrl,
                 ProductsStatus = createProductDto.ProductsStatus,
+                CategoryID=createProductDto.CategoryID
 
             });
             return Ok("Ürün eklendi.");
@@ -85,7 +86,7 @@ namespace SignalRApi.Controllers
 
 
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
 
         public IActionResult DeleteProduct(int id)
         {
