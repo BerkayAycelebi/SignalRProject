@@ -31,7 +31,7 @@ namespace SignalRApi.Controllers
             {
                 Mail = createBookingDto.Mail,
                 Date = createBookingDto.Date,
-                Description = createBookingDto.Description,
+              
                 Name = createBookingDto.Name,
                 PersonCount = createBookingDto.PersonCount,
                 Phone = createBookingDto.Phone
@@ -51,29 +51,28 @@ namespace SignalRApi.Controllers
         [HttpPut]
         public IActionResult UpdateBooking(UpdateBookingDto updateBookingDto)
         {
+            
             Booking booking = new Booking()
             {
                 Mail = updateBookingDto.Mail,
                 BookingID = updateBookingDto.BookingID,
-                Date = updateBookingDto.Date,
                 Name = updateBookingDto.Name,
-                Description = updateBookingDto.Description,
                 PersonCount = updateBookingDto.PersonCount,
-                Phone = updateBookingDto.Phone
-
+                Phone = updateBookingDto.Phone,
+                Date = updateBookingDto.Date,
+               
+                
             };
             _bookingService.TUpdate(booking);
             return Ok("Rezervasyon Güncellendi");
         }
-
         [HttpGet("{id}")]
         public IActionResult GetBooking(int id)
         {
-
             var value = _bookingService.TGetById(id);
             return Ok(value);
-
         }
 
     }
 }
+
