@@ -1,0 +1,103 @@
+﻿@model CreateContactDto
+@{
+    ViewData["Title"] = "CreateContact";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">İletişim İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">İletişim Girişi</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Location">Konum Giriniz</label>
+                                <input type="text" class="form-control" asp-for="Location" id="Location">
+
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Phone">Telefon Giriniz</label>
+                                <input type="text" class="form-control" asp-for="Phone" id="Phone">
+
+                            </div>
+                        </div>
+
+
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Mail">Mail Giriniz</label>
+                                <input type="email" class="form-control" asp-for="Mail" id="Mail">
+
+
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="FooterTitle">Başlık</label>
+                                <input type="text" class="form-control" asp-for="FooterTitle" id="FooterTitle">
+
+
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="FooterDescription">Açıklama Giriniz</label>
+                                <textarea class="form-control" rows="5" asp-for="FooterDescription" id="FooterDescription"></textarea>
+
+
+                            </div>
+                        </div>
+                    
+                          <div class="card-body">
+                            <div class="form-group">
+                                <label for="OpenDaysDescription">Açık Gün Açıklama</label>
+                                <textarea class="form-control" rows="5" asp-for="OpenDaysDescription" id="OpenDaysDescription"></textarea>
+
+
+                            </div>
+                        </div>
+
+                          <div class="card-body">
+                            <div class="form-group">
+                                <label for="OpenDays">Açık Gün</label>
+                                <textarea class="form-control" rows="5" asp-for="OpenDays" id="OpenDays"></textarea>
+
+
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="OpenHours">Açık Saat</label>
+                                <textarea class="form-control" rows="5" asp-for="OpenHours" id="OpenHours"></textarea>
+
+
+                            </div>
+                        </div>
+                                            
+                                               
+
+                        <div class="card-action">
+                            <button class="btn btn-primary">İletişim Ekle</button>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
