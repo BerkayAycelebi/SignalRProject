@@ -66,7 +66,7 @@ namespace SignalRApi.Controllers
 
 
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
 
         public IActionResult DeleteFeature(int id)
         {
@@ -75,7 +75,7 @@ namespace SignalRApi.Controllers
             return Ok("indirim Silindi");
         }
 
-        [HttpGet("GetDiscount")]
+        [HttpGet("{id}")]
         public IActionResult GetFeature(int id)
         {
             var value = _featureService.TGetById(id);
