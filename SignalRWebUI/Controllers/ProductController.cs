@@ -50,8 +50,8 @@ namespace SignalRWebUI.Controllers
                                           
             return View();
         }
-
-        [HttpPost]
+	
+		[HttpPost]
 
         public async Task<IActionResult> CreateProduct(CreateProductDto createProductDto)
         {
