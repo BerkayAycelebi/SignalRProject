@@ -1,4 +1,6 @@
-﻿
+﻿@model List<ResultSliderDto>
+
+@foreach(var item in Model){
 <section class="slider_section ">
     <div id="customCarousel1" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
@@ -8,14 +10,14 @@
                         <div class="col-md-7 col-lg-6 ">
                             <div class="detail-box">
                                 <h1>
-                                Calculus Restoran
+                             @item.Title1
                                 </h1>
                                 <p>
-                                    Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad mollitia laborum quam quisquam esse error unde. Tempora ex doloremque, labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.
+                                   @item.Description1
                                 </p>
                                 <div class="btn-box">
-                                    <a href="" class="btn1">
-                                        Order Now
+                                    <a href="/Order/Index/" class="btn1">
+                                        Sipariş
                                     </a>
                                 </div>
                             </div>
@@ -29,14 +31,14 @@
                         <div class="col-md-7 col-lg-6 ">
                             <div class="detail-box">
                                 <h1>
-                                    Fast Food Restaurant
+                                   @item.Title2
                                 </h1>
                                 <p>
-                                    Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad mollitia laborum quam quisquam esse error unde. Tempora ex doloremque, labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.
+                                   @item.Description2
                                 </p>
                                 <div class="btn-box">
-                                    <a href="" class="btn1">
-                                        Order Now
+                                 <a href="/Order/Index/" class="btn1">
+                                        Sipariş
                                     </a>
                                 </div>
                             </div>
@@ -50,14 +52,14 @@
                         <div class="col-md-7 col-lg-6 ">
                             <div class="detail-box">
                                 <h1>
-                                    Fast Food Restaurant
+                                    @item.Title3
                                 </h1>
                                 <p>
-                                    Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad mollitia laborum quam quisquam esse error unde. Tempora ex doloremque, labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.
+                                    @item.Description3
                                 </p>
                                 <div class="btn-box">
-                                    <a href="" class="btn1">
-                                        Order Now
+                                       <a href="/Order/Index/" class="btn1">
+                                            Sipariş
                                     </a>
                                 </div>
                             </div>
@@ -76,6 +78,6 @@
     </div>
 
 </section>
-
+}
 
  </div>
