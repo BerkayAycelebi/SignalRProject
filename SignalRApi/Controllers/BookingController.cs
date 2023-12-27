@@ -31,8 +31,8 @@ namespace SignalRApi.Controllers
             {
                 Mail = createBookingDto.Mail,
                 Date = createBookingDto.Date,
-              
-                Name = createBookingDto.Name,
+				Description = createBookingDto.Description,
+				Name = createBookingDto.Name,
                 PersonCount = createBookingDto.PersonCount,
                 Phone = createBookingDto.Phone
             };
