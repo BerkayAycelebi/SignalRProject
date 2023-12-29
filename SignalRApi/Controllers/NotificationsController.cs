@@ -87,5 +87,21 @@ namespace SignalRApi.Controllers
 			return Ok("Güncelleme işlemi başarılı");
 
 		}
-	}
+		[HttpGet("NotificationStatusChangeTrue/{id}")]
+
+		public IActionResult NotificationStatusChangeTrue(int id)
+		{
+			_notificationService.TNotificationStatusChangeTrue(id);
+			return Ok("Güncelleme yapıldı");
+		}
+
+        [HttpGet("NotificationStatusChangeFalse/{id}")]
+
+        public IActionResult NotificationStatusChangeFalse(int id)
+        {
+            _notificationService.TNotificationStatusChangeFalse(id);
+            return Ok("Güncelleme yapıldı");
+        }
+
+    }
 }

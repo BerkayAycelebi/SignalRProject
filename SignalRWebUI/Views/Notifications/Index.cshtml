@@ -24,6 +24,8 @@
 									<th scope="col">Açıklama</th>
 									<th scope="col">Tarih</th>
 									<th scope="col">Durum</th>
+									<th scope="col">Okundu</th>
+									<th scope="col">Okunmadı</th>
 									<th scope="col">Sil</th>
 									<th scope="col">Güncelle</th>
 								</tr>
@@ -36,8 +38,10 @@
 										<td>@item.Description</td>
 										<td>@item.Date</td>
 										<td>@item.Status</td>
-										<td><a href="/Notification/DeleteNotification/@item.NotificationID" class="btn btn-outline-danger">Sil</a></td>
-										<td><a href="/Notification/UpdateNotification/@item.NotificationID" class="btn btn-outline-success">Güncelle</a></td>
+										<td><a href="/Notifications/NotificationStatusChangeToTrue/@item.NotificationID" class="btn btn-outline-warning">Okundu</a></td>
+										<td><a href="/Notifications/NotificationStatusChangeFalse/@item.NotificationID" class="btn btn-outline-secondary">Okunmadı</a></td>
+										<td><a href="/Notifications/DeleteNotification/@item.NotificationID" class="btn btn-outline-danger">Sil</a></td>
+										<td><a href="/Notifications/UpdateNotification/@item.NotificationID" class="btn btn-outline-success">Güncelle</a></td>
 									</tr>
 
 								}
@@ -45,7 +49,7 @@
 
 							</tbody>
 						</table>
-						<a href="/Notification/CreateNotification/" class="btn btn-outline-primary">Yeni Bildirim Girişi</a>
+						<a href="/Notifications/CreateNotification/" class="btn btn-outline-primary">Yeni Bildirim Girişi</a>
 					</div>
 				</div>
 

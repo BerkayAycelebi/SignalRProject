@@ -1,8 +1,9 @@
-﻿@model CreateNotificationDto
+﻿@model UpdateNotificationDto
 @{
-    ViewData["Title"] = "CreateNotification";
+    ViewData["Title"] = "UpdateNotification";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
+
 
 <div class="content">
     <div class="container-fluid">
@@ -10,6 +11,7 @@
         <div class="row">
             <div class="col-md-12">
                 <form method="post">
+                    <input type="hidden" asp-for="NotificationID" />
                     <div class="card">
                         <div class="card-header">
                             <div class="card-title">Yeni Bildirim Girişi</div>
@@ -41,9 +43,9 @@
 
                         </div>
 
-                   
+
                         <div class="card-action">
-                            <button class="btn btn-primary">Bildirim Ekle</button>
+                            <button class="btn btn-primary">Bildirim Güncelle</button>
 
                         </div>
                     </div>
@@ -54,4 +56,6 @@
         </div>
     </div>
 </div>
+
+
 
