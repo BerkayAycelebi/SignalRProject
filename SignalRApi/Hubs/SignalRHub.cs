@@ -4,11 +4,11 @@ using SignalR.DataAccessLayer.Concrete;
 
 namespace SignalRApi.Hubs
 {
-    public class SignalRHub:Hub
-    {
+	public class SignalRHub : Hub
+	{
 
-        private readonly ICategoryService _categoryService;
-        private readonly IProductService _productService;
+		private readonly ICategoryService _categoryService;
+		private readonly IProductService _productService;
 		private readonly IOrderService _orderService;
 		private readonly IMoneyCaseService _moneyCaseService;
 		private readonly IMenuTableService _menuTableService;
@@ -25,7 +25,7 @@ namespace SignalRApi.Hubs
 			_bookingService = bookingService;
 			_notificationService = notificationService;
 		}
-
+		public static int clientCount { get; set; } = 0;
 		public async Task SendStatistic()
         {
             var valueCategory = _categoryService.TCategoryCount();
@@ -119,5 +119,18 @@ namespace SignalRApi.Hubs
 		{
 			await Clients.All.SendAsync("ReceiveMessage",user,message);
 		}
+
+        public override async Task OnConnectedAsync()
+        {
+			clientCount++;
+			await Clients.All.SendAsync("ReceiveClientCount", clientCount);
+			await base.OnConnectedAsync();
+        }
+        public override async Task OnDisconnectedAsync(Exception? exception)
+        {
+            clientCount--;
+			await Clients.All.SendAsync("ReceiveClientCount", clientCount);
+			await base.OnDisconnectedAsync(exception);
+        }
     }
 }
