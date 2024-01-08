@@ -21,4 +21,8 @@
     <ProjectReference Include="..\SignalR.EntityLayer\SignalR.EntityLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\register\assets\plugins\" />
+  </ItemGroup>
+
 </Project>
