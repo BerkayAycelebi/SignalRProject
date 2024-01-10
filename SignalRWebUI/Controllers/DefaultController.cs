@@ -31,7 +31,7 @@ namespace SignalRWebUI.Controllers
 			var client = _httpClientFactory.CreateClient();
 			var jsonData = JsonConvert.SerializeObject(createMessageDto);
 			StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-			var responseMessage = await client.PostAsync("https://localhost:7186/api/Message", stringContent);
+			var responseMessage = await client.PostAsync("https://localhost:7244/api/Message", stringContent);
 			if (responseMessage.IsSuccessStatusCode)
 			{
 				return RedirectToAction("Index");
