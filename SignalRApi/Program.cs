@@ -2,6 +2,7 @@ using SignalR.BusinessLayer.Abstract;
 using SignalR.BusinessLayer.Concrete;
 using SignalR.DataAccessLayer.Abstract;
 using SignalR.DataAccessLayer.Concrete;
+using SignalR.DataAccessLayer.EntityFramework;
 using SignalR.DataAccessLayer.EntityFrameWork;
 using SignalRApi.Hubs;
 using System.Reflection;
@@ -76,6 +77,9 @@ builder.Services.AddScoped<IBasketDal, EfBasketDal>();
 
 builder.Services.AddScoped<INotificationService, NotificationManager>();
 builder.Services.AddScoped<INotificationDal, EfNotificationDal>();
+
+builder.Services.AddScoped<IMessageService, MessageManager>();
+builder.Services.AddScoped<IMessageDal, EfMessageDal>();
 
 builder.Services.AddControllersWithViews().AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 

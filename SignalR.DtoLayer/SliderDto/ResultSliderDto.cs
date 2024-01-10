@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SignalRWebUI.Dtos.SliderDtos
+namespace SignalR.DtoLayer.SliderDto
 {
     public class ResultSliderDto
     {

@@ -1,7 +1,8 @@
 ﻿@model List<ResultTestimonialDto>
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/AdminLayout/Index.cshtml";
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
+	int counter = 0;
 }
 
 <div class="content">
@@ -30,8 +31,9 @@
 							<tbody>
 								@foreach(var item in Model)
 								{
+									counter++;
 									<tr>
-										<td>@item.TestimonialID</td>
+										<td>@counter</td>
 										<td>@item.Name</td>
 										<td>@item.Status</td>
 										<td><a href="/Testimonial/DeleteTestimonial/@item.TestimonialID" class="btn btn-outline-danger">Sil</a></td>
