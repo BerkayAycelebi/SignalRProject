@@ -31,31 +31,15 @@
                 </div>
             </div>
             <div class="col-md-4 footer-col">
-                <div class="footer_detail">
-                    <a href="/Default/Index/" class="footer-logo">
-                        @item.FooterTitle
-                    </a>
-                    <p>
-                     @item.FooterDescription
-                    </p>
-                    <div class="footer_social">
-                        <a href="">
-                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                    <div class="footer_detail">
+                        <a href="/Default/Index/" class="footer-logo">
+                            @item.FooterTitle
                         </a>
-                        <a href="">
-                            <i class="fa fa-twitter" aria-hidden="true"></i>
-                        </a>
-                        <a href="">
-                            <i class="fa fa-linkedin" aria-hidden="true"></i>
-                        </a>
-                        <a href="">
-                            <i class="fa fa-instagram" aria-hidden="true"></i>
-                        </a>
-                        <a href="">
-                            <i class="fa fa-pinterest" aria-hidden="true"></i>
-                        </a>
+                        <p>
+                            @item.FooterDescription
+                        </p>
+                        @await Component.InvokeAsync("_UILayoutSocialMediaComponentPartial")
                     </div>
-                </div>
             </div>
             <div class="col-md-4 footer-col">
                 <h4>
